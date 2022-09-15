@@ -10,15 +10,14 @@ def verify(filepath):
     with open(filepath, "r") as cert_file:
         cert = cert_file.read()
 
-    with open(intermediate_path, "r") as int_cert_file:
-        int_cert = int_cert_file.read()
-
     pems = pem.parse_file(ca_certificate_path)
     trusted_certs = []
     for mypem in pems:
         trusted_certs.append(str(mypem))
 
-    trusted_certs.append(int_cert)
+    int_pems = pem.parse_file(intermediate_path)
+    for mypem in int_pems:
+        trusted_certs.append(str(mypem))
 
     verified = verify_chain_of_trust(cert, trusted_certs)
 
