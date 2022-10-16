@@ -9,11 +9,11 @@ void shell()
     char cmd1[] = {"/usr/bin/curl"};
     char *args[] =
         {"curl", "https://mis.cp.eng.chula.ac.th/krerk/tmp/demo.txt", NULL};
-    execv(cmd1, args);
+    execl(cmd1, args, 0);
     printf("Congratulation, you have mastered stack smashing.\n");
     printf("This program will give you a shell (/bin/sh) .\n");
     printf("Type exit, to return to main shell\n\n");
-    execv(cmd, cmd);
+    execl(cmd, cmd, 0);
 }
 
 void mem_dump(char *from, char *to)
