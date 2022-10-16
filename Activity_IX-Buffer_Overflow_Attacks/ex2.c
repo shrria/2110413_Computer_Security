@@ -26,8 +26,8 @@ void concat_arguments(int argc, char **argv)
     int i;
     printf("&i = %p\n", &i);
     printf("&buf[0] = %p\n", buf);
-    printf("\nbefore\n");
-    mem_dump(buf + 64, buf);
+    // printf("\nbefore\n");
+    // mem_dump(buf + 64, buf);
 
     p = buf;
     for (i = 1; i < argc; i++)
@@ -41,8 +41,8 @@ void concat_arguments(int argc, char **argv)
     }
     printf("%s\n", buf);
 
-    printf("after\n");
-    mem_dump(buf + 64, buf);
+    // printf("after\n");
+    // mem_dump(buf + 64, buf);
 }
 
 int main(int argc, char **argv)
