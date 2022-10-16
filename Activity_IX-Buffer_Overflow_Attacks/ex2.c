@@ -13,7 +13,7 @@ void mem_dump(char *from, char *to)
     for (p = (from + 64); p >= to; p--)
     {
         printf("%p: 0x%02x\t", p, *(unsigned char *)p);
-        if (!((unsigned long)p % 2))
+        if (!((unsigned long)p % 4))
             printf("\n");
     }
     printf("\n");
@@ -26,8 +26,8 @@ void concat_arguments(int argc, char **argv)
     int i;
     printf("&i = %p\n", &i);
     printf("&buf[0] = %p\n", buf);
-    // printf("before\n");
-    // mem_dump(buf + 64,buf);
+    printf("\nbefore\n");
+    mem_dump(buf + 64, buf);
 
     p = buf;
     for (i = 1; i < argc; i++)
@@ -41,14 +41,14 @@ void concat_arguments(int argc, char **argv)
     }
     printf("%s\n", buf);
 
-    // printf("after\n");
-    // mem_dump(buf + 64,buf);
+    printf("after\n");
+    mem_dump(buf + 64, buf);
 }
 
 int main(int argc, char **argv)
 {
     printf("&main = %p\n", &main);
-    printf("&myfunction = %p\n", &concat_arguments);
+    printf("&concat_arguments = %p\n", &concat_arguments);
     printf("&greeting = %p\n", &greeting);
     greeting();
     concat_arguments(argc, argv);
